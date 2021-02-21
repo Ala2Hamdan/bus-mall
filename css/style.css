@@ -1,0 +1,42 @@
+main div img {
+    width: 300px;
+    height: 300px;
+    margin: 5px;
+
+}
+.imgCH{
+    width: 950px;
+
+}
+header{
+    color: dimgray;
+}
+header h1{
+    text-align: center;
+    font-size: xx-large;
+}
+ main div ul{
+     list-style-type:square;
+
+ }
+ main div ul{
+     font-size: 20px;
+     font-family: sans-serif;
+     font-weight: bolder;
+ }
+html{
+    background-color: rgb(172, 126, 172);
+
+}
+body{
+    background-color: rgb(72, 40, 88);
+    margin: 10px;
+}
+button{
+    width: 150px;
+    height: 70px;
+    color: rgb(94, 12, 56);
+    background-color: dimgray;
+    font-size: 20px;
+    font-weight: bold;
+}
