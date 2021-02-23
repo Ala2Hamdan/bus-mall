@@ -24,12 +24,12 @@ header h1{
      font-family: sans-serif;
      font-weight: bolder;
  }
-html{
+/* html{
     background-color: rgb(172, 126, 172);
 
-}
+} */
 body{
-    background-color: rgb(72, 40, 88);
+    /* background-color: rgb(72, 40, 88); */
     margin: 10px;
 }
 button{
