@@ -2,7 +2,7 @@
 
 let max = 25;
 
-let atm = 0;
+let attemptsUser = 0; 
 
 let div= document.getElementById('imgCH');
 
@@ -15,14 +15,15 @@ let indexImg=[];
 let arrayName=[];
 let arrayShown=[];
 let arrayVotes=[];
-console.log(arrayVotes);
+
 let arrayProduct = [];
+// create constructor function 
 function BusMall (pname , path ){
      this.productName = pname ;
      this.srcpath = path;
     this.shown = 0 ;
-    this.clickD = 0 ;
-    arrayProduct.push(this);
+    this.clickD = 0 ; 
+    arrayProduct.push(this);    // store every object in the arrayProduct
     arrayName.push(this.productName);
 
 }
@@ -48,7 +49,8 @@ new BusMall('water-can','images/water-can.jpg' );
 new BusMall('wine-glass','images/wine-glass.jpg');
 console.log(arrayProduct);
 
-function randomImg(){
+function randomImg(){ // this function is global and it asign random value between 0 and array length
+
     let randomI = Math.floor(Math.random()*arrayProduct.length);
     return randomI;
    
@@ -60,78 +62,29 @@ function randomImg(){
  let imageLfet;
  let imageMiddle;
  let imageRight;
+
 function renderThreeImg (){
-do {
- imageLfet = randomImg();
- if (indexImg.includes(imageLfet)){
-     imageLfet=randomImg();
- }else {
-    indexImg[0]= imageLfet;
- }
- imageMiddle = randomImg();
- if (indexImg.includes(imageMiddle)){
+    // asign to three images random index 
+    imageLfet=randomImg();
     imageMiddle=randomImg();
-}else {
-   indexImg[1]= imageMiddle;
-}
- imageRight = randomImg();
- if (indexImg.includes(imageRight)){
     imageRight=randomImg();
-}else {
-   indexImg[2]= imageRight;
-}
-}while ( imageLfet===imageMiddle||imageLfet===imageRight||imageMiddle===imageRight);
-
-//  indexImg=[];
-//  console.log(indexImg)
-//  indexImg[1]=imageMiddle;
-//  indexImg[2]=imageRight;
-    //  do {
-    // //  imageLfet =randomImg();
-    //  imageMiddle=randomImg();
-    //  imageRight=randomImg();
-    //  } while(indexImg.includes(imageLfet)===arrayProduct[imageLfet]|| indexImg.includes(imageMiddle)=== arrayProduct[imageMiddle] || indexImg.includes(imageRight)===arrayProduct[imageRight] );
-   
-    //  while((imageLfet === imageMiddle)|| (imageLfet === imageRight) || (imageMiddle === imageRight)){
-    //     imageMiddle =randomImg();
-    //     imageRight =randomImg();
-    // }
-
-    // do {
-    //     imageLfet = randomImg();
-    // }while (indexImg.includes(imageLfet));
-    // do {
-    //     imageMiddle = randomImg();
-    //  }while (indexImg.includes(imageMiddle));
-    //  do {
-    //      imageRight = randomImg();
-    //  }while(indexImg.includes(imageRight));
-
-    // do {
-    //     imageLfet = randomImg();
-    //     imageMiddle = randomImg();
-    //     imageRight = randomImg();
-    //     do{
-    //         imageMiddle=randomImg();
-    //         imageRight=randomImg();
-    //     } while(imageLfet===imageMiddle||imageLfet===imageRight||imageRight===imageMiddle);
-     
-
-    // }while(indexImg.includes(imageLfet) === indexImg.includes(imageMiddle)&& indexImg.includes(imageLfet)===indexImg.includes(imageMiddle)&&indexImg.includes(imageMiddle)===indexImg.includes(imageRight));
- 
-    
+   // here compare three image to not be the same ------------------------- // here compere to sure these images not in the arry indeximg[] using includes method
+    while(imageLfet===imageMiddle|| imageLfet===imageRight|imageMiddle===imageRight||indexImg.includes(imageLfet)||indexImg.includes(imageMiddle)||indexImg.includes(imageRight)){
+        imageLfet=randomImg();
+        imageMiddle=randomImg();
+        imageRight=randomImg(); 
+    }
 
 
     
-
+ // every index will store in global array indexImg
    indexImg[0] =imageLfet;
    indexImg[1]=imageMiddle;
    indexImg[2]=imageRight;
-// indexImg.push(imageLfet);
-// indexImg.push(imageMiddle);
-// indexImg.push(imageRight);
-   console.log(indexImg);
 
+
+   console.log(indexImg);
+// show image through  method its name setAttribute with two perameters the first identify the Attribute the secound to asign the value.
    img1.setAttribute('src' , arrayProduct[imageLfet].srcpath);
    arrayProduct[imageLfet].shown++;
    img2.setAttribute('src' , arrayProduct[imageMiddle].srcpath);
@@ -143,146 +96,68 @@ do {
 
 renderThreeImg ();
 
-
-//  console.log(indexImg);
-
-//  function renderNewImg (){
-//     imageLfet = randomImg();
-//     imageMiddle = randomImg();
-//     imageRight = randomImg();
-   
-        // do {
-        // imageMiddle=randomImg();
-        // imageRight=randomImg();
-        // } while(indexImg.includes(0)=== arrayProduct[imageLfet] || );
-      
-       
-//       indexImg.push(imageLfet,imageMiddle,imageRight);
-   
-//       img1.setAttribute('src' , arrayProduct[imageLfet].srcpath);
-//       arrayProduct[imageLfet].shown++;
-//       img2.setAttribute('src' , arrayProduct[imageMiddle].srcpath);
-//       arrayProduct[imageMiddle].shown++;
-//       img3.setAttribute('src' , arrayProduct[imageRight].srcpath);
-//       arrayProduct[imageRight].shown++;
-   
-//    }  
-//  renderNewImg();
-
-
 console.log(arrayProduct);
 
-
-
-
-img1.addEventListener('click', countClick);
-img2.addEventListener('click', countClick);
-img3.addEventListener('click', countClick);
-
-
-
-// div.addEventListener('click', countClick);
-
+div.addEventListener('click', countClick);
+   // when select image the cilck increment and attempts
 function countClick(event){
 
-    // console.log(event);
-        atm++ ;
-   
-    if ( atm < max ){
+    if ( attemptsUser <= max ){
 
         if  ( event.target.id === 'imge1' ){
            arrayProduct[imageLfet].clickD++;
-
+           attemptsUser++;
        
 
        }else if (event.target.id === 'imge2'){
-           arrayProduct[imageMiddle].ckickD++;
-   
+           arrayProduct[imageMiddle].clickD++;
+           attemptsUser++;
+       
 
 
        }else {
-           arrayProduct[imageRight].ckickD++;
+           arrayProduct[imageRight].clickD++;
+           attemptsUser++;
         
         
        }
 
        renderThreeImg();
-    // renderNewImg ();
     
 } else {
     let  button = document.getElementById('clickB');
 
       button.addEventListener('click', result);
-
+            // when clicl on button show the result 
       function result (event) {
 
 
      
        let ulEl = document.getElementById('ul1');
 
-        // div.appendChild(ulEl);
        let li ;
-
+        
        for (let i = 0; i < arrayProduct.length ; i++){
            li = document.createElement('li');
            ul1.appendChild(li);
            li.textContent = `${arrayProduct[i].productName} had ${arrayProduct[i].clickD} Votes, and was seen ${arrayProduct[i].shown} times`;
            button.removeEventListener('click',result);
          }  
-         for( let j=0; j< arrayProduct.length;j++){
-            arrayShown.push(arrayProduct[j].shown);
-            arrayVotes.push(arrayProduct[j].clickD);
+         // store every shown and click in global arrays
+         for( let j = 0 ; j < arrayProduct.length ; j++){
+           arrayShown.push(arrayProduct[j].shown);
+           arrayVotes.push(arrayProduct[j].clickD);
        }
+       console.log(arrayVotes);
        charts();
       }
-    //    div.removeEventListener('click',countClick);
-        img1.removeEventListener('click',countClick);
-         img2.removeEventListener('click',countClick);
-         img3.removeEventListener('click',countClick);
-
-
-
-
-    //   let  button = document.getElementById('ckickB');
-
-    //   button.addEventListener('ckick', result);
-
-
-    //   function result (event) {
-
-
+       div.removeEventListener('click',countClick);
      
-    //    let ulEl = document.getElementById('ul1');
-
-    //     div.appendChild(ulEl);
-    //    let li ;
-
-    //    for (let i = 0; i < arrayProduct.length ; i++){
-    //        li = document.createElement('li');
-    //        ul1.appendChild(li);
-    //        li.textContent = `${arrayProduct[i].productName} had ${arrayProduct[i].ckickD} Votes, and was seen ${arrayProduct[i].shown} times`;
-    //        button.removeEventListener('ckick',result);
-    //      }  
-        //  for( let j=0; j< arrayProduct.length;j++){
-        //      arrayShown.push(arrayProduct[j].shown);
-        //      arrayVotes.push(arrayProduct[j].ckickD);
-            
-    //      }
-    //       charts();
-          
-    //    }
-        
     
-    //    div.removeEventListener('ckick',countClick);
-      
-
-
     }
 
-
 }
-// console.log(arrayShown);
-// console.log(arrayVotes);
+
 
 function charts(){
 var ctx = document.getElementById('myChart').getContext('2d');
