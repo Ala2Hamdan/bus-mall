@@ -123,6 +123,7 @@ function countClick(event){
        }
 
        renderThreeImg();
+       storedVotes ();
     
 } else {
     let  button = document.getElementById('clickB');
@@ -159,6 +160,8 @@ function countClick(event){
 }
 
 
+// function create chart on web page and show data when click buttton ( i call this function above)
+
 function charts(){
 var ctx = document.getElementById('myChart').getContext('2d');
 var chart = new Chart(ctx, {
@@ -188,3 +191,21 @@ var chart = new Chart(ctx, {
     options: {}
 });
 }
+
+// save the array of object in the local storage 
+function storedVotes (){
+let votesLocalstorge = JSON.stringify(arrayProduct);
+localStorage.setItem('localStoreVotes' , votesLocalstorge);
+console.log(votesLocalstorge);
+}
+
+function getValuesLocal(){
+
+    let votesGetStorge= localStorage.getItem('localStoreVotes');
+     let votesList = JSON.parse(votesGetStorge);
+     console.log(votesList);
+   if (votesList){
+       arrayProduct = votesList;
+   }
+}
+getValuesLocal();
