@@ -2,7 +2,7 @@
 
 let max = 25;
 
-let atm = 0;
+let attemptsUser = 0;
 
 let div= document.getElementById('imgCH');
 
@@ -14,13 +14,13 @@ let img3 = document.getElementById('imge3');
 
 
 
-let arrayp = [];
+let arrayProduct = [];
 function BusMall (pname , path ){
      this.productName = pname ;
      this.srcpath = path;
     this.shown = 0 ;
     this.clickD = 0 ;
-    arrayp.push(this);
+    arrayProduct.push(this);
 
 }
 new BusMall('bag','images/bag.jpg' );
@@ -43,67 +43,66 @@ new BusMall('unicorn','images/unicorn.jpg' );
 new BusMall('usb','images/usb.gif' );
 new BusMall('water-can','images/water-can.jpg' );
 new BusMall('wine-glass','images/wine-glass.jpg' );
-console.log(arrayp);
+console.log(arrayProduct);
 
 function randomImg(){
-    let randomI = Math.floor(Math.random()*arrayp.length);
+    let randomI = Math.floor(Math.random()*arrayProduct.length);
     return randomI;
    
 }
  console.log(randomImg());
  
- let ig1;
- let ig2;
- let ig3;
+ let imageLfet;
+ let imageMiddle;
+ let imageRight;
 function renderThreeImg (){
- ig1 = randomImg();
- ig2 = randomImg();
- ig3 = randomImg();
+ imageLfet = randomImg();
+ imageMiddle = randomImg();
+ imageRight = randomImg();
 
      do {
-     ig2=randomImg();
-     ig3=randomImg();
-     } while(ig1 === ig2||ig1 === ig3||ig2===ig3);
-    // while((ig1 === ig2 )|| (ig1 === ig3 )|| (ig2 === ig3 )){
-    //     ig2 =randomImg();
-    //     ig3 =randomImg();
+     imageMiddle=randomImg();
+     imageRight=randomImg();
+     } while(imageLfet === imageMiddle||imageLfet === imageRight||imageMiddle===imageRight);
+    // while((imageLfet === imageMiddle )|| (imageLfet === imageRight )|| (imageMiddle === imageRight )){
+    //     imageMiddle =randomImg();
+    //     imageRight =randomImg();
     // }
 
-   img1.setAttribute('src' , arrayp[ig1].srcpath);
-   arrayp[ig1].shown++;
-   img2.setAttribute('src' , arrayp[ig2].srcpath);
-   arrayp[ig2].shown++;
-   img3.setAttribute('src' , arrayp[ig3].srcpath);
-   arrayp[ig3].shown++;
+   img1.setAttribute('src' , arrayProduct[imageLfet].srcpath);
+   arrayProduct[imageLfet].shown++;
+   img2.setAttribute('src' , arrayProduct[imageMiddle].srcpath);
+   arrayProduct[imageMiddle].shown++;
+   img3.setAttribute('src' , arrayProduct[imageRight].srcpath);
+   arrayProduct[imageRight].shown++;
 
 }
 renderThreeImg ();
 
 
-div.addEventListener('click', cl);
+div.addEventListener('click', countClick);
 
-function cl(event){
+function countClick(event){
 
     console.log(event);
-        atm++ ;
+        
    
-    if ( atm < max ){
+    if ( attemptsUser < max ){
 
         if  ( event.target.id === 'imge1' ){
-           arrayp[ig1].clickD++;
-           arrayp[ig1].shown++;
+           arrayProduct[imageLfet].clickD++;
+           attemptsUser++ ;
+      
        
 
        }else if (event.target.id === 'imge2'){
-           arrayp[ig2].clickD++;
-           arrayp[ig2].shown++;
-       
+           arrayProduct[imageMiddle].clickD++;
+           attemptsUser++ ;
 
 
        }else {
-           arrayp[ig3].clickD++;
-           arrayp[ig3].shown++;
-        
+           arrayProduct[imageRight].clickD++;
+           attemptsUser++ ;
         
        }
        renderThreeImg();
@@ -120,20 +119,18 @@ function cl(event){
 
      
        let ulEl = document.getElementById('ul1');
-
-        div.appendChild(ulEl);
        let li ;
 
-       for (let i = 0; i < arrayp.length ; i++){
+       for (let i = 0; i < arrayProduct.length ; i++){
            li = document.createElement('li');
            ul1.appendChild(li);
-           li.textContent = `${arrayp[i].productName} had ${arrayp[i].clickD} Votes, and was seen ${arrayp[i].shown} times`;
+           li.textContent = `${arrayProduct[i].productName} had ${arrayProduct[i].clickD} Votes, and was seen ${arrayProduct[i].shown} times`;
            button.removeEventListener('click',result);
          }  
        }
       
     
-       div.removeEventListener('click',cl);
+       div.removeEventListener('click',countClick);
       
 
 
