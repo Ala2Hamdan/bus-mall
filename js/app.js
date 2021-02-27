@@ -2,6 +2,7 @@
 
 let max = 25;
 
+
 let attemptsUser = 0; 
 
 let div= document.getElementById('imgCH');
@@ -16,12 +17,14 @@ let arrayName=[];
 let arrayShown=[];
 let arrayVotes=[];
 
+
 let arrayProduct = [];
 // create constructor function 
 function BusMall (pname , path ){
      this.productName = pname ;
      this.srcpath = path;
     this.shown = 0 ;
+
     this.clickD = 0 ; 
     arrayProduct.push(this);    // store every object in the arrayProduct
     arrayName.push(this.productName);
@@ -63,6 +66,7 @@ function randomImg(){ // this function is global and it asign random value betwe
  let imageMiddle;
  let imageRight;
 
+
 function renderThreeImg (){
     // asign to three images random index 
     imageLfet=randomImg();
@@ -81,6 +85,7 @@ function renderThreeImg (){
    indexImg[0] =imageLfet;
    indexImg[1]=imageMiddle;
    indexImg[2]=imageRight;
+
 
 
    console.log(indexImg);
@@ -107,18 +112,21 @@ function countClick(event){
         if  ( event.target.id === 'imge1' ){
            arrayProduct[imageLfet].clickD++;
            attemptsUser++;
+
        
 
        }else if (event.target.id === 'imge2'){
            arrayProduct[imageMiddle].clickD++;
+
            attemptsUser++;
        
 
 
+
        }else {
            arrayProduct[imageRight].clickD++;
+
            attemptsUser++;
-        
         
        }
 
@@ -132,8 +140,6 @@ function countClick(event){
             // when clicl on button show the result 
       function result (event) {
 
-
-     
        let ulEl = document.getElementById('ul1');
 
        let li ;
@@ -156,6 +162,7 @@ function countClick(event){
      
     
     }
+
 
 }
 
